@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+<meta property="og:title" content="My Personal Word List" />
+<meta property="og:description" content="Some Collection Of Mine" />
+<meta property="og:image" content="{{url_for('static', filename='logo_red.png')}}" />
+<link rel="shortcut icon" href="{{url_for('static', filename='favicon.ico')}}" type="image/x-icon" />
+<link rel="icon" href="{{url_for('static', filename='favico.ico')}}" type="image/x-icon" />
+<link href='{{ url_for("static", filename="style.css") }}' rel="stylesheet">
+<script src='{{ url_for("static", filename="index.js") }}'></script>
+<title>Home | SWEETER</title>
+
+<script>
+    $(document).ready(function () {
+        get_posts()
+    })
+
+</script>
+
+</head>
+
+<body class="has-navbar-fixed-top">
+    <div class="wrap">
+        <nav class="navbar is-fixed-top is-white is-small" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="/">
+                    <img src="{{ url_for('static', filename='logo.jpg') }}" />
+                    <strong class="is-sparta logo-text">SWEETER</strong>
+                </a>
+            </div>
+        </nav>
+        <section class="section">
+            <article class="media">
+                <figure class="media-left" style="align-self: center">
+                    <a class="image is-32x32" href="/user/{{ user_info.username }}">
+                        <img class="is-rounded" src='{{ url_for ("static", filename= user_info.profile_pic_real)}}'>
+                    </a>
+                </figure>
+                <div class="media-content">
+                    <div class="field">
+                        <p class="control">
+                            <input id="input-post" class="input is-rounded" placeholder="What are you thinking about?"
+                                onclick='$("#modal-post").addClass("is-active")' />
+                        </p>
+                    </div>
+                </div>
+                <div class="modal" id="modal-post">
+                    <div class="modal-background" onclick='$("#modal-post").removeClass("is-active")'></div>
+                    <div class="modal-content">
+                        <div class="box">
+                            <article class="media">
+                                <div class="media-content">
+                                    <div class="field">
+                                        <p class="control">
+                                            <textarea id="textarea-post" class="textarea"
+                                                placeholder="What are you thinking about?"></textarea>
+                                        </p>
+                                    </div>
+                                    <nav class="level is-mobile">
+                                        <div class="level-left">
+
+                                        </div>
+                                        <div class="level-right">
+                                            <div class="level-item">
+                                                <a class="button is-sparta" onclick="post()">Create post</a>
+                                            </div>
+                                            <div class="level-item">
+                                                <a class="button is-sparta is-outlined"
+                                                    onclick='$("#modal-post").removeClass("is-active")'>Cancel</a>
+                                            </div>
+                                        </div>
+                                    </nav>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                    <button class="modal-close is-large" aria-label="close"
+                        onclick='$("#modal-post").removeClass("is-active")'></button>
+                </div>
+            </article>
+        </section>
+        <section class="section">
+            <div id="post-box" class="container">
+            </div>
+        </section>
+    </div>
+    </div>
+    <footer class="py-3 my-4">
+        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+            <li class="nav-item"><a href="/" class="nav-link px-2 text-muted">Home</a></li>
+            <li class="nav-item"><a href="/secret" class="nav-link px-2 text-muted">Details</a></li>
+        </ul>
+        <p class="text-center text-muted">© 2023 Company, Inc</p>
+    </footer>
+
+</body>
+
+</html>
